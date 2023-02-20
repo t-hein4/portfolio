@@ -1,20 +1,23 @@
 import client from "@/lib/sanity-client";
 import { buildImgUrl } from "@/lib/sanity-image";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home({ projects }) {
   return (
     <>
       {projects.length > 0 && (
-        <div className="container mx-auto">
+        <div className="container mx-auto py-16">
           {projects.map((project) => (
             <div key={project._id}>
-              <Image
-                width={2000}
-                height={1000}
-                alt={`Cover image for ${project.title}`}
-                src={project.cover_image}
-              />
+              <Link href={`/projects/${project.slug}`}>
+                <Image
+                  width={2000}
+                  height={1000}
+                  alt={`Cover image for ${project.title}`}
+                  src={project.cover_image}
+                />
+              </Link>
               <div className="grid auto-cols-fr grid-flow-col gap-x-8 py-16">
                 <div className="space-y-6">
                   <h2 className="text-5xl">{project.title}</h2>
@@ -47,7 +50,7 @@ export default function Home({ projects }) {
 export async function getStaticProps() {
   let projects = await client.fetch(
     `*[_type == "project"] 
-    { _id, title, date, excerpt, cover_image, "author": author->{name, picture}}`
+    { _id, title, date, excerpt, cover_image, "author": author->{name, picture}, "slug": slug.current}`
   );
 
   projects = projects.map((project) => {

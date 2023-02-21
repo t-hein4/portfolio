@@ -1,26 +1,38 @@
-import { ProjectCard } from "@/components/project-card";
+import { Projects } from "@/components/projects";
 import client from "@/lib/sanity-client";
 import { query } from "@/lib/sanity-queries";
-
-export default function Home({ projects }) {
+import { PreviewSuspense } from "next-sanity/preview";
+import { lazy } from "react";
+const PreviewProjects = lazy(() => import("@/components/preview-projects"));
+export default function Home({ projects, preview }) {
   return (
     <>
-      {projects.length > 0 && (
-        <div className="container mx-auto py-16">
-          {projects.map((project) => (
-            <ProjectCard {...{ ...project }} key={project._id} />
-          ))}
-        </div>
+      {preview ? (
+        <>
+          <PreviewSuspense fallback="loading">
+            <PreviewProjects query={query.allProjects} />
+          </PreviewSuspense>
+        </>
+      ) : (
+        <Projects projects={projects} />
       )}
     </>
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({ preview = false }) {
+  if (preview) {
+    return {
+      props: {
+        preview,
+      },
+    };
+  }
   let projects = await client.fetch(query.allProjects);
 
   return {
     props: {
+      preview,
       projects,
     },
   };

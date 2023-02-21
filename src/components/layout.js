@@ -5,8 +5,8 @@ import { Fragment } from "react";
 export function Layout({ children }) {
   return (
     <>
-      <nav className="flex justify-end p-4">
-        <div className="relative md:hidden">
+      <nav className="relative flex justify-end p-4">
+        <div className="absolute top-0 right-2 mt-1 md:hidden">
           <Menu>
             <Menu.Button className="mb-20">
               <div>
@@ -50,11 +50,11 @@ export function Layout({ children }) {
             </Transition>
           </Menu>
         </div>
-        <div className="flex gap-4">
-          <div className="rounded-md px-2 py-1 text-right text-sm text-neutral-900 hover:bg-neutral-400 hover:text-white">
+        <div className="hidden gap-4 text-sm md:flex lg:text-base">
+          <div className="rounded-md px-2 py-1 text-right  text-neutral-900 hover:bg-neutral-400 hover:text-white">
             <Link href="/about">About me</Link>
           </div>
-          <div className="rounded-md px-2 py-1 text-right text-sm text-neutral-900 hover:bg-neutral-400 hover:text-white">
+          <div className="rounded-md px-2 py-1 text-right text-neutral-900 hover:bg-neutral-400 hover:text-white">
             <Link href="/">My projects</Link>
           </div>
         </div>

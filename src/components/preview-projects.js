@@ -9,7 +9,7 @@ export default function PreviewProjects({ query }) {
     <>
       <Projects projects={data} />
       <Link
-        className="fixed bottom-0 right-0 bg-blue-500 p-6 font-bold text-white"
+        className="fixed bottom-0 right-0 bg-black p-6 font-bold text-white"
         href="/api/exit-preview"
       >
         Exit Preview

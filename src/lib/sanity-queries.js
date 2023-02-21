@@ -18,8 +18,9 @@ export const query = Object.freeze({
     *[_type == 'project'][].slug.current
   `,
 
-  projectBySlug: groq`
-    *[_type == 'project' && slug.current == $slug] [0] { 
+  projectAndMoreProjects: groq`
+  {
+    "project": *[_type == "project" && slug.current == $slug] | order(_updatedAt desc) [0] {
       content, 
       title, 
       date, 
@@ -27,11 +28,8 @@ export const query = Object.freeze({
       cover_image, 
       tech_stack[]->{_id, name, logo, link},
       author->{name, picture}
-    }
-  `,
-
-  moreProjects: groq`
-    *[_type == 'project' && slug.current != $slug] { 
+    },
+    "moreProjects": *[_type == "project" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
       _id, 
       title, 
       date, 
@@ -41,7 +39,7 @@ export const query = Object.freeze({
       tech_stack[]->{_id, name, logo, link},
       author->{name, picture}
     }
-  `,
+  }`,
 
   aboutMe: groq`*[_type == 'author' && name == 'Thein Hein'] [0]`,
 });

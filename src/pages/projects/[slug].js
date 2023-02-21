@@ -17,9 +17,8 @@ export default function ProjectPage({
         <>
           <PreviewSuspense fallback="loading">
             <PreviewProject
-              query={query.projectBySlug}
+              query={query.projectAndMoreProjects}
               queryParams={queryParams}
-              moreProjects={moreProjects}
             />
           </PreviewSuspense>
         </>
@@ -41,9 +40,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params, preview = false }) {
   let queryParams = { slug: params.slug };
-  let project = await client.fetch(query.projectBySlug, queryParams);
-
-  let moreProjects = await client.fetch(query.moreProjects, queryParams);
+  let { project, moreProjects } = await client.fetch(
+    query.projectAndMoreProjects,
+    queryParams
+  );
 
   return {
     props: {

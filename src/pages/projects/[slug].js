@@ -2,11 +2,12 @@ import { Author } from "@/components/author";
 import { CoverImage } from "@/components/cover-image";
 import { ProjectCard } from "@/components/project-card";
 import { ProjectContent } from "@/components/project-content";
+import { TechStack } from "@/components/tech-stack";
 import client from "@/lib/sanity-client";
 import { query } from "@/lib/sanity-queries";
 
 export default function Project({ project, moreProjects }) {
-  const { title, author, cover_image, date, content } = project;
+  const { title, author, cover_image, date, content, tech_stack } = project;
   return (
     <div className="container mx-auto space-y-16 py-16">
       <div className="space-y-8 px-4 md:px-0">
@@ -19,7 +20,7 @@ export default function Project({ project, moreProjects }) {
       </div>
       <CoverImage cover_image={cover_image} title={title} />
       <div className="grid grid-flow-row justify-center gap-8 px-4 md:px-0">
-        <p className="w-full max-w-prose">{date}</p>
+        <TechStack {...{ tech_stack }} />
         <ProjectContent content={content} />
       </div>
       <hr />

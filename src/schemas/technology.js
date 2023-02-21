@@ -7,6 +7,14 @@ const technology = {
       name: "name",
       type: "string",
     },
+    {
+      name: "logo",
+      type: "image",
+    },
+    {
+      name: "link",
+      type: "url",
+    },
   ],
 };
 

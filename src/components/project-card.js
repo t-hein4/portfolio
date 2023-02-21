@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Author } from "./author";
 import { CoverImage } from "./cover-image";
+import { TechStack } from "./tech-stack";
 
 export function ProjectCard({
   slug,
@@ -23,12 +24,7 @@ export function ProjectCard({
               {title}
             </h2>
           </Link>
-          <span className="block">{date}</span>
-          <div className="space-x-6">
-            {tech_stack.map((tech) => (
-              <span key={tech._id}>{tech.name}</span>
-            ))}
-          </div>
+          <TechStack {...{ tech_stack }} />
         </div>
         <div className="space-y-6">
           <p className="max-w-prose">{excerpt}</p>

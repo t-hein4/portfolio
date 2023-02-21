@@ -9,7 +9,9 @@ export default async function revalidate(req, res) {
     return;
   }
 
-  res.revalidate("/");
+  const jsonBody = JSON.parse(body);
+  await res.revalidate("/");
+  await res.revalidate(`/projects/${jsonBody.slug.current}`);
   res.json({ success: true });
 }
 

@@ -6,11 +6,11 @@ export const query = Object.freeze({
       _id, 
       title, 
       date, 
-      tech_stack[]->{_id, name},
       excerpt,
       cover_image,
-      author->{name, picture},
-      'slug': slug.current
+      'slug': slug.current,
+      tech_stack[]->{_id, name},
+      author->{name, picture}
     }
   `,
 
@@ -25,7 +25,8 @@ export const query = Object.freeze({
       date, 
       excerpt, 
       cover_image, 
-      author->{name, picture} 
+      tech_stack[]->{_id, name},
+      author->{name, picture}
     }
   `,
 
@@ -34,11 +35,11 @@ export const query = Object.freeze({
       _id, 
       title, 
       date, 
-      tech_stack[]->{_id, name},
       excerpt,
       cover_image,
-      author->{name, picture},
-      'slug': slug.current
+      'slug': slug.current,
+      tech_stack[]->{_id, name},
+      author->{name, picture}
     }
   `,
 });

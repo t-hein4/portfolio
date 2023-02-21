@@ -24,7 +24,7 @@ export default function Project({ project, moreProjects }) {
       </div>
       <hr />
       <div className="space-y-12">
-        <h2 className="px-4 text-center text-4xl font-medium md:px-0 md:text-5xl">
+        <h2 className="px-4 text-center text-4xl font-medium md:px-0 md:text-left md:text-5xl">
           More Projects
         </h2>
         {moreProjects.map((moreProject) => (

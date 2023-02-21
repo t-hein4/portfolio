@@ -1,6 +1,6 @@
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
-const secret = "hello";
+const secret = process.env.SANITY_WEBHOOK_SECRET;
 export default async function revalidate(req, res) {
   const signature = req.headers[SIGNATURE_HEADER_NAME];
   const body = await readBody(req);
@@ -15,7 +15,6 @@ export default async function revalidate(req, res) {
   res.json({ success: true });
 }
 
-// Next.js will by default parse the body, which can lead to invalid signatures
 export const config = {
   api: {
     bodyParser: false,

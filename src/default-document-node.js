@@ -8,7 +8,7 @@ export const defaultDocumentNode = function (S, { schemaType }) {
         S.view
           .component(Iframe)
           .options({
-            url: `http://localhost:3000/api/preview`,
+            url: `https://t-hein.vercel.app/api/preview`,
           })
           .title("Preview"),
       ]);

@@ -14,13 +14,13 @@ export function Layout({ children }) {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
@@ -38,7 +38,7 @@ export function Layout({ children }) {
               <Menu.Items className="absolute right-0 bottom-0 w-56 space-y-1 rounded-md bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div className="rounded-md px-2 py-1 text-right text-sm text-neutral-900 hover:bg-neutral-400 hover:text-white">
                   <Menu.Item>
-                    <Link href="/about">About me</Link>
+                    <Link href="/about-me">About me</Link>
                   </Menu.Item>
                 </div>
                 <div className="rounded-md px-2 py-1 text-right text-sm text-neutral-900 hover:bg-neutral-400 hover:text-white">
@@ -52,7 +52,7 @@ export function Layout({ children }) {
         </div>
         <div className="hidden gap-4 text-sm md:flex lg:text-base">
           <div className="rounded-md px-2 py-1 text-right  text-neutral-900 hover:bg-neutral-400 hover:text-white">
-            <Link href="/about">About me</Link>
+            <Link href="/about-me">About me</Link>
           </div>
           <div className="rounded-md px-2 py-1 text-right text-neutral-900 hover:bg-neutral-400 hover:text-white">
             <Link href="/">My projects</Link>

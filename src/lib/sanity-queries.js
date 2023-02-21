@@ -42,4 +42,6 @@ export const query = Object.freeze({
       author->{name, picture}
     }
   `,
+
+  aboutMe: groq`*[_type == 'author' && name == 'Thein Hein'] [0]`,
 });

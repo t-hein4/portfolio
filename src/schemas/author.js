@@ -47,6 +47,19 @@ const author = {
       name: "linkedIn",
       type: "url",
     },
+    {
+      name: "about",
+      type: "array",
+      of: [
+        {
+          type: "block",
+        },
+      ],
+    },
+    {
+      name: "cover_image",
+      type: "image",
+    },
   ],
 };
 

@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
-  p {
-    @apply leading-7;
+  p,
+  div,
+  span,
+  a {
+    @apply font-primary text-lg leading-7;
   }
 
   h1,
@@ -26,14 +29,14 @@
   .portable-text h4,
   .portable-text h5,
   .portable-text h6 {
-    @apply mt-9;
+    @apply mt-9 font-heading;
   }
 
   .portable-text h2 {
-    @apply text-xl font-semibold;
+    @apply text-2xl font-semibold;
   }
 
   .portable-text h3 {
-    @apply text-lg font-semibold;
+    @apply text-xl font-semibold;
   }
 }

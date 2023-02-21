@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { buildImgUrl } from "@/lib/sanity-image";
 
 export function CoverImage({ cover_image, title }) {
   return (
@@ -6,7 +7,7 @@ export function CoverImage({ cover_image, title }) {
       width={2000}
       height={1000}
       alt={`Cover image for ${title}`}
-      src={cover_image}
+      src={buildImgUrl(cover_image)}
     />
   );
 }

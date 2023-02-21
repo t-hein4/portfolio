@@ -2,7 +2,7 @@ import { Author } from "@/components/author";
 import { CoverImage } from "@/components/cover-image";
 import { ProjectContent } from "@/components/project-content";
 import client from "@/lib/sanity-client";
-import { buildImgUrl } from "@/lib/sanity-image";
+import { projectBySlug, projectsSlugs } from "@/lib/sanity-queries";
 
 export default function Project({ project }) {
   const { title, author, cover_image, date, content } = project;
@@ -24,36 +24,17 @@ export default function Project({ project }) {
 }
 
 export async function getStaticPaths() {
-  let projects = await client.fetch(
-    `*[_type == "project"] { "slug": slug.current }`
-  );
+  let slugs = await client.fetch(projectsSlugs);
 
-  let paths = projects.map((project) => {
-    return {
-      params: {
-        slug: project.slug,
-      },
-    };
-  });
   return {
-    paths,
+    paths: slugs.map((slug) => `/projects/${slug}`),
     fallback: "blocking",
   };
 }
 
 export async function getStaticProps({ params }) {
-  let projects = await client.fetch(
-    `*[_type == "project" && slug.current == "${params.slug}"] { content, title, date, excerpt, cover_image, author->{name, picture} }`
-  );
+  let project = await client.fetch(projectBySlug, { slug: params.slug });
 
-  let project = {
-    ...projects[0],
-    cover_image: buildImgUrl(projects[0].cover_image),
-    author: {
-      ...projects[0].author,
-      picture: buildImgUrl(projects[0].author.picture),
-    },
-  };
   return {
     props: {
       project,

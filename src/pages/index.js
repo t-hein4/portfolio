@@ -1,7 +1,6 @@
 import { ProjectCard } from "@/components/project-card";
 import client from "@/lib/sanity-client";
-import { buildImgUrl } from "@/lib/sanity-image";
-import { allProjects } from "@/lib/sanity-queries";
+import { query } from "@/lib/sanity-queries";
 
 export default function Home({ projects }) {
   return (
@@ -18,7 +17,7 @@ export default function Home({ projects }) {
 }
 
 export async function getStaticProps() {
-  let projects = await client.fetch(allProjects);
+  let projects = await client.fetch(query.allProjects);
 
   return {
     props: {

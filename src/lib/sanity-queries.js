@@ -1,9 +1,9 @@
 import { groq } from "next-sanity";
-import client from "@/lib/sanity-client";
 
-export const allProjects = groq`
-  *[_type == 'project']
-    { _id, 
+export const query = Object.freeze({
+  allProjects: groq`
+    *[_type == 'project'] { 
+      _id, 
       title, 
       date, 
       tech_stack[]->{_id, name},
@@ -12,15 +12,14 @@ export const allProjects = groq`
       author->{name, picture},
       'slug': slug.current
     }
-`;
+  `,
 
-export const projectsSlugs = groq`
-  *[_type == 'project'][].slug.current
-`;
+  projectsSlugs: groq`
+    *[_type == 'project'][].slug.current
+  `,
 
-export const projectBySlug = groq`
-  *[_type == 'project' && slug.current == $slug] [0]
-    { 
+  projectBySlug: groq`
+    *[_type == 'project' && slug.current == $slug] [0] { 
       content, 
       title, 
       date, 
@@ -28,4 +27,18 @@ export const projectBySlug = groq`
       cover_image, 
       author->{name, picture} 
     }
-`;
+  `,
+
+  moreProjects: groq`
+    *[_type == 'project' && slug.current != $slug] { 
+      _id, 
+      title, 
+      date, 
+      tech_stack[]->{_id, name},
+      excerpt,
+      cover_image,
+      author->{name, picture},
+      'slug': slug.current
+    }
+  `,
+});

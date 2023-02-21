@@ -16,10 +16,14 @@ export function ProjectCard({
       <Link href={`/projects/${slug}`}>
         <CoverImage cover_image={cover_image} title={title} />
       </Link>
-      <div className="grid auto-cols-fr grid-flow-col gap-x-8 py-16">
+      <div className="grid auto-cols-fr gap-x-8 py-16 px-4 md:grid-flow-col md:px-0">
         <div className="space-y-6">
-          <h2 className="text-5xl">{title}</h2>
-          <span className="block text-lg">{date}</span>
+          <Link href={`/projects/${slug}`}>
+            <h2 className="text-2xl font-medium hover:underline md:text-3xl">
+              {title}
+            </h2>
+          </Link>
+          <span className="block">{date}</span>
           <div className="space-x-6">
             {tech_stack.map((tech) => (
               <span key={tech._id}>{tech.name}</span>

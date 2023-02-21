@@ -55,7 +55,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   let projects = await client.fetch(
-    `*[_type == "project" && slug.current == "${params.slug}"] { content, title, date, excerpt, cover_image, "author": author->{name, picture} }`
+    `*[_type == "project" && slug.current == "${params.slug}"] { content, title, date, excerpt, cover_image, author->{name, picture} }`
   );
 
   let project = {

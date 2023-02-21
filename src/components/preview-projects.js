@@ -3,11 +3,11 @@ import Link from "next/link";
 import { Projects } from "./projects";
 
 export default function PreviewProjects({ query }) {
-  const data = usePreview(null, query);
+  const projects = usePreview(null, query);
 
   return (
     <>
-      <Projects projects={data} />
+      <Projects projects={projects} />
       <Link
         className="fixed bottom-0 right-0 bg-black p-6 font-bold text-white"
         href="/api/exit-preview"

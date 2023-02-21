@@ -1,7 +1,7 @@
 import { Author } from "./author";
 import { CoverImage } from "./cover-image";
 import { ProjectCard } from "./project-card";
-import { ProjectContent } from "./project-content";
+import { SanityBlock } from "./sanity-block";
 import { TechStack } from "./tech-stack";
 
 export function Project({
@@ -29,7 +29,7 @@ export function Project({
       </div>
       <div className="grid grid-flow-row justify-center gap-8 px-4 2xl:px-0">
         {tech_stack && <TechStack {...{ tech_stack }} />}
-        {content && <ProjectContent content={content} />}
+        {content && <SanityBlock value={content} />}
       </div>
       <hr />
       {moreProjects.length > 0 && (

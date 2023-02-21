@@ -1,5 +1,5 @@
 import client from "@/lib/sanity-client";
-import { ProjectContent } from "@/components/project-content";
+import { SanityBlock } from "@/components/sanity-block";
 import { CoverImage } from "@/components/cover-image";
 import { query } from "@/lib/sanity-queries";
 export default function AboutMe({ me }) {
@@ -23,7 +23,7 @@ export default function AboutMe({ me }) {
           <CoverImage cover_image={cover_image} title={name} />
         </div>
         <div className="flex items-center justify-center px-4">
-          <ProjectContent content={about} />
+          <SanityBlock value={about} />
         </div>
       </div>
       <div className="grid w-fit grid-cols-12 justify-items-end gap-2 self-end px-4 text-right leading-relaxed xl:px-0">

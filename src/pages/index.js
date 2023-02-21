@@ -5,18 +5,12 @@ import { PreviewSuspense } from "next-sanity/preview";
 import { lazy } from "react";
 const PreviewProjects = lazy(() => import("@/components/preview-projects"));
 export default function Home({ projects, preview }) {
-  return (
-    <>
-      {preview ? (
-        <>
-          <PreviewSuspense fallback="loading">
-            <PreviewProjects query={query.allProjects} />
-          </PreviewSuspense>
-        </>
-      ) : (
-        <Projects projects={projects} />
-      )}
-    </>
+  return preview ? (
+    <PreviewSuspense fallback="loading">
+      <PreviewProjects query={query.allProjects} />
+    </PreviewSuspense>
+  ) : (
+    <Projects projects={projects} />
   );
 }
 

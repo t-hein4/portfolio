@@ -11,21 +11,15 @@ export default function ProjectPage({
   project,
   moreProjects,
 }) {
-  return (
-    <>
-      {preview ? (
-        <>
-          <PreviewSuspense fallback="loading">
-            <PreviewProject
-              query={query.projectAndMoreProjects}
-              queryParams={queryParams}
-            />
-          </PreviewSuspense>
-        </>
-      ) : (
-        <Project {...{ ...project }} moreProjects={moreProjects} />
-      )}
-    </>
+  return preview ? (
+    <PreviewSuspense fallback="loading">
+      <PreviewProject
+        query={query.projectAndMoreProjects}
+        queryParams={queryParams}
+      />
+    </PreviewSuspense>
+  ) : (
+    <Project {...{ ...project }} moreProjects={moreProjects} />
   );
 }
 

@@ -56,7 +56,7 @@ export function Footer() {
 function FooterLink({ src, children }) {
   return src ? (
     <a
-      className="col-span-11 justify-self-end font-primary font-light tracking-wide hover:text-sky-800"
+      className="col-span-11 justify-self-end font-primary font-light tracking-wide text-sky-800 hover:text-sky-500 hover:underline"
       href={src}
     >
       {children}

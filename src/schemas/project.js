@@ -58,6 +58,14 @@ const project = {
         },
       ],
     },
+    {
+      name: "source_code",
+      type: "url",
+    },
+    {
+      name: "live_demo",
+      type: "url",
+    },
   ],
 };
 

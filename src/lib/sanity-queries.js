@@ -21,7 +21,6 @@ export const query = Object.freeze({
   projectAndMoreProjects: groq`
   {
     "project": *[_type == "project" && slug.current == $slug] | order(_updatedAt desc) [0] {
-      author->{name, picture},
       content,
       cover_image,
       date,
@@ -33,7 +32,6 @@ export const query = Object.freeze({
       title
     },
     "moreProjects": *[_type == "project" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
-      author->{name, picture},
       cover_image,
       date, 
       excerpt,

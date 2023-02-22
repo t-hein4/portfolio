@@ -6,8 +6,8 @@ export function PageTransition({ children }) {
 
   return (
     <motion.div
-      initial="initial"
-      animate="animate"
+      initial="hidden"
+      animate="enter"
       exit="exit"
       transition="transition"
       variants={animation.slide}
@@ -19,13 +19,14 @@ export function PageTransition({ children }) {
 
 const animation = {
   slide: {
-    initial: { x: 300, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
-    exit: { x: 300, opacity: 0 },
+    hidden: { opacity: 0, x: -300 },
+    enter: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: 0 },
     transition: {
-      type: "tween",
+      type: "spring",
       stiffness: 260,
       damping: 20,
+      delay: 1,
     },
   },
 };

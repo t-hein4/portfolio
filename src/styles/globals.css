@@ -3,11 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  p {
+    @apply leading-relaxed;
+  }
 }
 
 @layer components {
   .portable-text p {
-    @apply mb-4;
+    @apply mb-4 font-primary font-thin leading-relaxed;
   }
 
   .portable-text h1,

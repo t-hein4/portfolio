@@ -3,9 +3,7 @@ import { groq } from "next-sanity";
 export const query = Object.freeze({
   allProjects: groq`
     *[_type == 'project'] { 
-      author->{name, picture},
       cover_image,
-      date,
       excerpt,
       _id,
       live_demo,

@@ -6,6 +6,7 @@ import { clsx } from "clsx";
 import Image from "next/image";
 import menuIcon from "../../public/icons/menu.svg";
 export function Nav() {
+  const router = useRouter();
   const [navStyle, setNavStyle] = useState("");
   function listenScrollEvent() {
     if (window.scrollY > 0) {
@@ -26,21 +27,23 @@ export function Nav() {
   }, []);
 
   return (
-    <nav className={clsx("sticky top-0 bg-white p-4 md:py-2", navStyle)}>
-      <MobileMenu />
-      <DesktopMenu />
-    </nav>
+    router.asPath !== "/studio" && (
+      <nav className={clsx("sticky top-0 bg-white p-4 md:py-2", navStyle)}>
+        <MobileMenu />
+        <DesktopMenu />
+      </nav>
+    )
   );
 }
 
 function DesktopMenu() {
   const router = useRouter();
   return (
-    <div className="hidden w-full justify-center gap-8 tracking-wide md:flex">
+    <div className="hidden w-full justify-end gap-8 tracking-wide md:flex">
       <Link
         href="/about-me"
         className={clsx(
-          "px-2 py-1 font-primary font-light",
+          "px-2 py-1 font-primary",
           router.asPath === "/about-me" &&
             "text-sky-700 underline decoration-4 underline-offset-4"
         )}
@@ -50,7 +53,7 @@ function DesktopMenu() {
       <Link
         href="/"
         className={clsx(
-          "px-2 py-1 font-primary font-light",
+          "px-2 py-1 font-primary",
           router.asPath === "/" &&
             "text-sky-700 underline decoration-4 underline-offset-4"
         )}
@@ -83,7 +86,7 @@ function MobileMenu() {
               <Link
                 href="/about-me"
                 className={clsx(
-                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm font-light text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
+                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
                   router.asPath === "/about-me" && "bg-sky-700 text-white"
                 )}
               >
@@ -94,7 +97,7 @@ function MobileMenu() {
               <Link
                 href="/"
                 className={clsx(
-                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm font-light text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
+                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
                   router.asPath === "/" && "bg-sky-700 text-white"
                 )}
               >

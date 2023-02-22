@@ -5,10 +5,10 @@ export function Logo({ logo, name }) {
   return (
     <Image
       src={buildImgUrl(logo)}
-      width={32}
-      height={32}
+      width={24}
+      height={24}
       alt={`${name} logo`}
-      className="h-6 w-6 md:h-8 md:w-8"
+      className="h-6 w-6"
     />
   );
 }

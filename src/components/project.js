@@ -1,6 +1,7 @@
 import { Author } from "./author";
 import { CoverImage } from "./cover-image";
 import { ProjectCard } from "./project-card";
+import { ProjectLinks } from "./project-links";
 import { SanityBlock } from "./sanity-block";
 import { TechStack } from "./tech-stack";
 
@@ -11,6 +12,8 @@ export function Project({
   cover_image,
   tech_stack,
   moreProjects,
+  source_code,
+  live_demo,
 }) {
   return (
     <div className="container mx-auto space-y-16 py-16">
@@ -28,7 +31,12 @@ export function Project({
         {cover_image && <CoverImage cover_image={cover_image} title={title} />}
       </div>
       <div className="grid grid-flow-row justify-center gap-8 px-4 2xl:px-0">
-        {tech_stack && <TechStack {...{ tech_stack }} />}
+        <div className="flex justify-between">
+          {tech_stack && <TechStack {...{ tech_stack }} />}
+          {source_code && live_demo && (
+            <ProjectLinks source_code={source_code} live_demo={live_demo} />
+          )}
+        </div>
         {content && <SanityBlock value={content} />}
       </div>
       <hr />

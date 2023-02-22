@@ -7,7 +7,7 @@ export default function AboutMe({ me }) {
   return (
     <div className="container mx-auto my-16 flex w-fit flex-col gap-16 xl:gap-24">
       <div className="flex flex-col items-center justify-center gap-x-16 gap-y-8 xl:flex-row">
-        <div className="max-w-2xl shadow-lg shadow-black/30 grayscale">
+        <div className="max-w-2xl shadow-lg shadow-black/30">
           <CoverImage cover_image={cover_image} title={name} />
         </div>
         <div className="flex items-center justify-center px-4">

@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 
 export const query = Object.freeze({
   allProjects: groq`
-    *[_type == 'project'] { 
+    *[_type == 'project'] | order(_updatedAt desc) { 
       cover_image,
       excerpt,
       _id,

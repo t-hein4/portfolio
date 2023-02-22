@@ -55,7 +55,7 @@ function CardImage({ slug, image, title }) {
 function CardHeading({ slug, title }) {
   return (
     <Link href={`/projects/${slug}`} className="hover:underline">
-      <h2 className="font-heading text-3xl font-bold">{title}</h2>
+      <h2 className="font-heading text-3xl font-semibold">{title}</h2>
     </Link>
   );
 }

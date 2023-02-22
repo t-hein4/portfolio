@@ -1,13 +1,32 @@
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { clsx } from "clsx";
 import Image from "next/image";
 import menuIcon from "../../public/icons/menu.svg";
 export function Nav() {
+  const [navStyle, setNavStyle] = useState("");
+  function listenScrollEvent() {
+    if (window.scrollY > 0) {
+      setNavStyle("shadow-md ring-1 ring-neutral-200 ");
+    } else if (window.scrollY == 0) {
+      setNavStyle("");
+    }
+  }
+
+  useEffect(() => {
+    if (window) {
+      window.addEventListener("scroll", listenScrollEvent);
+    }
+
+    return () => {
+      window.removeEventListener("scroll", listenScrollEvent);
+    };
+  }, []);
+
   return (
-    <nav className="relative flex justify-end p-4">
+    <nav className={clsx("sticky top-0 bg-white p-4 md:py-2", navStyle)}>
       <MobileMenu />
       <DesktopMenu />
     </nav>
@@ -21,7 +40,7 @@ function DesktopMenu() {
       <Link
         href="/about-me"
         className={clsx(
-          "px-2 py-1 font-primary",
+          "px-2 py-1 font-primary font-light",
           router.asPath === "/about-me" &&
             "text-sky-700 underline decoration-4 underline-offset-4"
         )}
@@ -31,7 +50,7 @@ function DesktopMenu() {
       <Link
         href="/"
         className={clsx(
-          "px-2 py-1 font-primary",
+          "px-2 py-1 font-primary font-light",
           router.asPath === "/" &&
             "text-sky-700 underline decoration-4 underline-offset-4"
         )}
@@ -64,7 +83,7 @@ function MobileMenu() {
               <Link
                 href="/about-me"
                 className={clsx(
-                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
+                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm font-light text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
                   router.asPath === "/about-me" && "bg-sky-700 text-white"
                 )}
               >
@@ -75,7 +94,7 @@ function MobileMenu() {
               <Link
                 href="/"
                 className={clsx(
-                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
+                  "cursor-pointer rounded-md px-2 py-1 text-right text-sm font-light text-neutral-900 transition-all duration-150 ease-out hover:bg-sky-700 hover:text-white",
                   router.asPath === "/" && "bg-sky-700 text-white"
                 )}
               >

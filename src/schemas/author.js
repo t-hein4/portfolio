@@ -44,7 +44,7 @@ const author = {
       type: "url",
     },
     {
-      name: "linkedIn",
+      name: "linkedin",
       type: "url",
     },
     {

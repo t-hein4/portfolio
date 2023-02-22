@@ -3,14 +3,16 @@ import { groq } from "next-sanity";
 export const query = Object.freeze({
   allProjects: groq`
     *[_type == 'project'] { 
-      _id, 
-      title, 
-      date, 
-      excerpt,
+      author->{name, picture},
       cover_image,
+      date,
+      excerpt,
+      _id,
+      live_demo,
       'slug': slug.current,
+      source_code,
       tech_stack[]->{_id, name, logo, link},
-      author->{name, picture}
+      title
     }
   `,
 
@@ -21,23 +23,28 @@ export const query = Object.freeze({
   projectAndMoreProjects: groq`
   {
     "project": *[_type == "project" && slug.current == $slug] | order(_updatedAt desc) [0] {
-      content, 
-      title, 
-      date, 
-      excerpt, 
-      cover_image, 
+      author->{name, picture},
+      content,
+      cover_image,
+      date,
+      excerpt,
+      live_demo,
+      'slug': slug.current,
+      source_code,
       tech_stack[]->{_id, name, logo, link},
-      author->{name, picture}
+      title
     },
     "moreProjects": *[_type == "project" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
-      _id, 
-      title, 
+      author->{name, picture},
+      cover_image,
       date, 
       excerpt,
-      cover_image,
+      _id,
+      live_demo,
       'slug': slug.current,
+      source_code,
       tech_stack[]->{_id, name, logo, link},
-      author->{name, picture}
+      title
     }
   }`,
 

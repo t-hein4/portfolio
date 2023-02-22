@@ -1,28 +1,18 @@
 import Link from "next/link";
 import { Author } from "./author";
 import { CoverImage } from "./cover-image";
+import { ProjectLinks } from "./project-links";
 import { TechStack } from "./tech-stack";
-export function ProjectCard({
-  slug,
-  title,
-  cover_image,
-  date,
-  tech_stack,
-  excerpt,
-  author,
-}) {
+export function ProjectCard(project) {
   return (
-    <>
-      <CardImage image={cover_image} title={title} slug={slug} />
-      <CardBody
-        slug={slug}
-        title={title}
-        tech_stack={tech_stack}
-        author={author}
-        excerpt={excerpt}
-        date={date}
+    <div>
+      <CardImage
+        image={project.cover_image}
+        title={project.title}
+        slug={project.slug}
       />
-    </>
+      <CardBody {...{ ...project }} />
+    </div>
   );
 }
 
@@ -36,7 +26,16 @@ function CardImage({ slug, image, title }) {
   );
 }
 
-function CardBody({ slug, title, tech_stack, author, excerpt, date }) {
+function CardBody({
+  slug,
+  title,
+  tech_stack,
+  author,
+  excerpt,
+  date,
+  source_code,
+  live_demo,
+}) {
   return (
     <div className="grid auto-cols-fr gap-x-8 gap-y-4 py-16 px-4 md:grid-flow-col 2xl:px-0">
       <div className="space-y-6">
@@ -45,7 +44,10 @@ function CardBody({ slug, title, tech_stack, author, excerpt, date }) {
             {title}
           </h2>
         </Link>
-        <TechStack {...{ tech_stack }} />
+        <div className="flex justify-between">
+          <TechStack {...{ tech_stack }} />
+          <ProjectLinks source_code={source_code} live_demo={live_demo} />
+        </div>
       </div>
       <div className="space-y-6">
         <p className="max-w-prose">{excerpt}</p>

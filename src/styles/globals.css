@@ -10,7 +10,7 @@
 
 @layer components {
   .portable-text p {
-    @apply mb-4 font-primary font-thin leading-relaxed;
+    @apply mb-4 font-primary leading-relaxed;
   }
 
   .portable-text h1,

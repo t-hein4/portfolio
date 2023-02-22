@@ -61,5 +61,5 @@ function CardHeading({ slug, title }) {
 }
 
 function CardExcerpt({ excerpt }) {
-  return <p className="font-primary font-light">{excerpt}</p>;
+  return <p className="font-primary">{excerpt}</p>;
 }

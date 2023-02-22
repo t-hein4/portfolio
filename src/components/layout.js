@@ -5,7 +5,7 @@ export function Layout({ children }) {
   return (
     <>
       <Nav />
-      {children}
+      <div className="my-16 mx-auto max-w-6xl">{children}</div>
       <Footer />
     </>
   );

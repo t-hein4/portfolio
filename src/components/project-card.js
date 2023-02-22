@@ -16,7 +16,7 @@ export function ProjectCard(project) {
   return (
     <div className="grid gap-y-12 pb-16">
       <CardImage image={cover_image} title={title} slug={slug} />
-      <div className="grid items-start justify-center gap-y-8 px-4 md:grid-cols-2 md:grid-rows-2 md:gap-x-12 md:px-0">
+      <div className="grid items-start justify-center gap-y-8 px-4 md:grid-cols-2 md:grid-rows-2 md:gap-x-12 xl:px-0">
         <CardHeading slug={slug} title={title} />
         <div className="flex items-center justify-between md:self-end">
           <CardActions

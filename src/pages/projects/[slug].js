@@ -3,6 +3,7 @@ import { query } from "@/lib/sanity-queries";
 import { PreviewSuspense } from "next-sanity/preview";
 import { lazy } from "react";
 import { Project } from "@/components/project";
+import { Loading } from "@/components/loading";
 const PreviewProject = lazy(() => import("@/components/preview-project"));
 
 export default function ProjectPage({
@@ -12,7 +13,7 @@ export default function ProjectPage({
   moreProjects,
 }) {
   return preview ? (
-    <PreviewSuspense fallback="loading">
+    <PreviewSuspense fallback={<Loading />}>
       <PreviewProject
         query={query.projectAndMoreProjects}
         queryParams={queryParams}

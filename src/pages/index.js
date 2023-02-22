@@ -1,3 +1,4 @@
+import { Loading } from "@/components/loading";
 import { Projects } from "@/components/projects";
 import client from "@/lib/sanity-client";
 import { query } from "@/lib/sanity-queries";
@@ -6,7 +7,7 @@ import { lazy } from "react";
 const PreviewProjects = lazy(() => import("@/components/preview-projects"));
 export default function Home({ projects, preview }) {
   return preview ? (
-    <PreviewSuspense fallback="loading">
+    <PreviewSuspense fallback={<Loading />}>
       <PreviewProjects query={query.allProjects} />
     </PreviewSuspense>
   ) : (

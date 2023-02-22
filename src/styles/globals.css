@@ -3,19 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  p,
-  div,
-  span,
-  a {
-    @apply font-primary text-lg leading-7;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    @apply tracking-wide;
-  }
 }
 
 @layer components {

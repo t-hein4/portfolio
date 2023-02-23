@@ -2,20 +2,19 @@ import Link from "next/link";
 import { CoverImage } from "./cover-image";
 import { ProjectLinks } from "./project-links";
 import { TechStack } from "./tech-stack";
-export function ProjectCard(project) {
-  const {
-    cover_image,
-    title,
-    slug,
-    tech_stack,
-    source_code,
-    live_demo,
-    excerpt,
-  } = project;
-
+export function ProjectCard({
+  cover_image,
+  title,
+  slug,
+  tech_stack,
+  source_code,
+  live_demo,
+  excerpt,
+  idx,
+}) {
   return (
     <div className="grid gap-y-12 pb-16">
-      <CardImage image={cover_image} title={title} slug={slug} />
+      <CardImage image={cover_image} title={title} slug={slug} idx={idx} />
       <div className="grid items-start justify-center gap-y-8 px-4 md:grid-cols-2 md:grid-rows-2 md:gap-x-12 xl:px-0">
         <CardHeading slug={slug} title={title} />
         <div className="flex items-center justify-between md:self-end">
@@ -42,11 +41,11 @@ function CardActions({ tech_stack, source_code, live_demo }) {
   );
 }
 
-function CardImage({ slug, image, title }) {
+function CardImage({ slug, image, title, idx }) {
   return (
     <Link href={`/projects/${slug}`}>
       <div className="cursor-pointer shadow-lg shadow-black/20 transition-all duration-150 ease-in-out hover:shadow-xl hover:shadow-black/20">
-        <CoverImage cover_image={image} title={title} />
+        <CoverImage cover_image={image} title={title} idx={idx} />
       </div>
     </Link>
   );

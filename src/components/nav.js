@@ -1,36 +1,30 @@
 import { Menu, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { clsx } from "clsx";
 import Image from "next/image";
 import menuIcon from "../../public/icons/menu.svg";
+import { useScrollListener } from "@/hooks/useScrollListener";
 export function Nav() {
   const router = useRouter();
-  const [navStyle, setNavStyle] = useState("");
-  function listenScrollEvent() {
-    if (window.scrollY > 0) {
-      setNavStyle("shadow-md ring-1 ring-neutral-200 ");
-    } else if (window.scrollY == 0) {
-      setNavStyle("");
-    }
-  }
-
-  useEffect(() => {
-    if (window) {
-      window.addEventListener("scroll", listenScrollEvent);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", listenScrollEvent);
-    };
-  }, []);
+  const { scrollY } = useScrollListener();
 
   return (
     router.asPath !== "/studio" && (
-      <nav className={clsx("sticky top-0 bg-white p-4 md:py-2", navStyle)}>
-        <MobileMenu />
-        <DesktopMenu />
+      <nav
+        className={clsx(
+          "sticky top-0 z-50 h-14 bg-white/80 p-4 backdrop-blur-xl",
+          scrollY > 0 && "shadow-lg ring-1 ring-neutral-200"
+        )}
+      >
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between">
+          <p className="font-primary font-extrabold tracking-wide text-blue-800 drop-shadow">
+            <Link href="/">Thein Hein</Link>
+          </p>
+          <MobileMenu />
+          <DesktopMenu />
+        </div>
       </nav>
     )
   );
@@ -39,13 +33,13 @@ export function Nav() {
 function DesktopMenu() {
   const router = useRouter();
   return (
-    <div className="hidden w-full justify-end gap-8 tracking-wide md:flex">
+    <div className="hidden tracking-wide md:flex md:gap-x-6">
       <Link
         href="/about-me"
         className={clsx(
-          "px-2 py-1 font-primary",
+          "font-primary text-sm",
           router.asPath === "/about-me" &&
-            "text-sky-700 underline decoration-4 underline-offset-4"
+            "text-blue-800 underline decoration-2 underline-offset-4"
         )}
       >
         About me
@@ -53,9 +47,9 @@ function DesktopMenu() {
       <Link
         href="/"
         className={clsx(
-          "px-2 py-1 font-primary",
+          "font-primary text-sm",
           router.asPath === "/" &&
-            "text-sky-700 underline decoration-4 underline-offset-4"
+            "text-blue-800 underline decoration-2 underline-offset-4"
         )}
       >
         My projects
@@ -67,9 +61,9 @@ function DesktopMenu() {
 function MobileMenu() {
   const router = useRouter();
   return (
-    <div className="absolute top-0 right-2 mt-1 md:hidden">
+    <div className="absolute top-0 right-2 mt-4 md:hidden">
       <Menu>
-        <Menu.Button className="mb-20">
+        <Menu.Button className="mb-24">
           <Image src={menuIcon} alt="Menu icon" />
         </Menu.Button>
         <Transition

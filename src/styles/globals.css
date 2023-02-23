@@ -3,14 +3,20 @@
 @tailwind utilities;
 
 @layer base {
-  p {
+  p,
+  li {
     @apply leading-relaxed text-neutral-700;
   }
 }
 
 @layer components {
-  .portable-text p {
+  .portable-text p,
+  .portable-text li {
     @apply mb-4 font-primary leading-relaxed;
+  }
+
+  .portable-text li {
+    @apply list-disc;
   }
 
   .portable-text h1,

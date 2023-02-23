@@ -4,7 +4,7 @@
 
 @layer base {
   p {
-    @apply leading-relaxed;
+    @apply leading-relaxed text-neutral-700;
   }
 }
 

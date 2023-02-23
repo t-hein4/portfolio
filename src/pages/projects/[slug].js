@@ -4,6 +4,9 @@ import { PreviewSuspense } from "next-sanity/preview";
 import { lazy } from "react";
 import { Project } from "@/components/project";
 import { Loading } from "@/components/loading";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import clsx from "clsx";
 const PreviewProject = lazy(() => import("@/components/preview-project"));
 
 export default function ProjectPage({
@@ -12,6 +15,7 @@ export default function ProjectPage({
   project,
   moreProjects,
 }) {
+  const router = useRouter();
   return preview ? (
     <PreviewSuspense fallback={<Loading />}>
       <PreviewProject
@@ -20,7 +24,19 @@ export default function ProjectPage({
       />
     </PreviewSuspense>
   ) : (
-    <Project {...{ ...project }} moreProjects={moreProjects} />
+    <>
+      <Head>
+        <title>Thein Hein | {project.title}</title>
+      </Head>
+      <div
+        className={clsx(
+          "my-16 mx-auto",
+          router.asPath !== "/studio" && "max-w-6xl"
+        )}
+      >
+        <Project {...{ ...project }} moreProjects={moreProjects} />
+      </div>
+    </>
   );
 }
 

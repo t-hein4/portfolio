@@ -1,10 +1,3 @@
-import Image from "next/image";
-import linkedinLogo from "../../public/icons/linkedin.svg";
-import codePenLogo from "../../public/icons/code-pen.svg";
-import githubLogo from "../../public/icons/github.svg";
-import phoneIcon from "../../public/icons/phone.svg";
-import emailIcon from "../../public/icons/email.svg";
-import gpsIcon from "../../public/icons/gps.svg";
 import { useRouter } from "next/router";
 export function Footer() {
   const router = useRouter();

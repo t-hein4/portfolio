@@ -1,6 +1,4 @@
-import { Author } from "./author";
 import { CoverImage } from "./cover-image";
-import { ProjectCard } from "./project-card";
 import { ProjectLinks } from "./project-links";
 import { Projects } from "./projects";
 import { SanityBlock } from "./sanity-block";
@@ -16,22 +14,26 @@ export function Project({
   live_demo,
 }) {
   return (
-    <div className="space-y-16">
-      {title && <ProjectTitle title={title} />}
-      {cover_image && <ProjectImage image={cover_image} title={title} />}
-      <ProjectActions
-        tech_stack={tech_stack}
-        source_code={source_code}
-        live_demo={live_demo}
-      />
-      {content && (
-        <div className="flex justify-center px-4 xl:px-0">
-          <SanityBlock value={content} />
-        </div>
-      )}
-      <hr />
-      {moreProjects.length > 0 && <MoreProjects moreProjects={moreProjects} />}
-    </div>
+    <>
+      <div className="space-y-16">
+        {title && <ProjectTitle title={title} />}
+        {cover_image && <ProjectImage image={cover_image} title={title} />}
+        <ProjectActions
+          tech_stack={tech_stack}
+          source_code={source_code}
+          live_demo={live_demo}
+        />
+        {content && (
+          <div className="flex justify-center px-4 xl:px-0">
+            <SanityBlock value={content} />
+          </div>
+        )}
+        <hr />
+        {moreProjects.length > 0 && (
+          <MoreProjects moreProjects={moreProjects} />
+        )}
+      </div>
+    </>
   );
 }
 

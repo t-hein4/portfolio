@@ -1,6 +1,3 @@
-import { query } from "@/lib/sanity-queries";
-import { useEffect, useState } from "react";
-import client from "@/lib/sanity-client";
 import Image from "next/image";
 import linkedinLogo from "../../public/icons/linkedin.svg";
 import codePenLogo from "../../public/icons/code-pen.svg";
@@ -11,48 +8,10 @@ import gpsIcon from "../../public/icons/gps.svg";
 import { useRouter } from "next/router";
 export function Footer() {
   const router = useRouter();
-  const [
-    {
-      city,
-      state,
-      zip_code,
-      country,
-      email,
-      phone,
-      code_pen,
-      github,
-      linkedin,
-    },
-    setData,
-  ] = useState({});
-
-  useEffect(() => {
-    (async () => {
-      const me = await client.fetch(query.aboutMe);
-      setData(me);
-    })();
-  }, []);
 
   return (
     router.asPath !== "/studio" && (
-      <footer className="flex justify-end py-32 shadow-md ring-1 ring-neutral-200/60">
-        <div className="grid grid-cols-12 gap-2">
-          <FooterLink>
-            {city}, {state} {zip_code}, {country}
-          </FooterLink>
-          <Image src={gpsIcon} alt="GPS icon" className="w-6" />
-          <FooterLink>{email}</FooterLink>
-          <Image src={emailIcon} alt="Email icon" className="w-6" />
-          <FooterLink>{phone}</FooterLink>
-          <Image src={phoneIcon} alt="Phone icon" className="w-6" />
-          <FooterLink src={github}>{github}</FooterLink>
-          <Image src={githubLogo} alt="GitHub logo" className="w-6" />
-          <FooterLink src={code_pen}>{code_pen}</FooterLink>
-          <Image src={codePenLogo} alt="Codepen logo" className="w-6" />
-          <FooterLink src={linkedin}>{linkedin}</FooterLink>
-          <Image src={linkedinLogo} alt="Linkedin logo" className="w-6" />
-        </div>
-      </footer>
+      <footer className="min-h-[450px] py-32 px-4 shadow-md ring-1 ring-neutral-200/60"></footer>
     )
   );
 }

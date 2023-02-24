@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import favicon from "../../public/favicon.svg";
+import { Analytics } from "@vercel/analytics/react";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function App({ Component, pageProps }) {
         >
           <Layout key={router.asPath}>
             <Component {...pageProps} />
+            <Analytics />
           </Layout>
         </AnimatePresence>
       </div>
